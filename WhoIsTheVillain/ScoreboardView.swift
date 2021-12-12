@@ -62,34 +62,37 @@ struct ScoreboardView: View {
                     
                     
                 } else {
-                    ForEach((0..<dateArray.count).reversed(), id: \.self) { i in
-                        let maxCounter: Int = countersArray[i].max() ?? 0
-                                               
-                        DisclosureGroup {
-                            Divider()
-                            ForEach(0..<namesArray[i].count) { j in
-                                TableView(item: PersonalData(personName: namesArray[i][j],
-                                                             timeCount: timesArray[i][j],
-                                                             timeoutCounter: countersArray[i][j]),
-                                          isTurtle: (maxCounter==0) ? false : (countersArray[i][j]==maxCounter) )
-                                    .id(UUID())
-                            }
-                        } label: {
-                            HStack {
-                                Spacer()
-                                Text(df.string(from: dateArray[i]))
+                    LazyVStack {
+                        ForEach((0..<dateArray.count).reversed(), id: \.self) { i in
+                            let maxCounter: Int = countersArray[i].max() ?? 0
+                            
+                            DisclosureGroup {
+                                Divider()
+                                ForEach(0..<namesArray[i].count) { j in
+                                    TableView(item: PersonalData(personName: namesArray[i][j],
+                                                                 timeCount: timesArray[i][j],
+                                                                 timeoutCounter: countersArray[i][j]),
+                                              isTurtle: (maxCounter==0) ? false : (countersArray[i][j]==maxCounter) )
+                                        .id(UUID())
+                                }
+                            } label: {
+                                HStack {
+                                    Spacer()
+                                    Text(df.string(from: dateArray[i]))
                                     // .fixedSize()
-                                    .foregroundColor(colorScheme == .dark ? Color.white : Color.black)
-                                Spacer()
+                                        .foregroundColor(colorScheme == .dark ? Color.white : Color.black)
+                                    Spacer()
+                                }
+                                .font(.system(size: SettingConstants.fontSize))
                             }
-                            .font(.system(size: SettingConstants.fontSize))
+                            .frame(width: UIScreen.main.bounds.size.width - SettingConstants.fontSize*0.5)
+                            .padding(.trailing, SettingConstants.fontSize*0.2)
+                            .overlay(
+                                RoundedRectangle(cornerRadius: 15)
+                                    .stroke(Color.gray, lineWidth: 1.5))
                         }
-                        .frame(width: UIScreen.main.bounds.size.width - SettingConstants.fontSize*0.5)
-                        .padding(.trailing, SettingConstants.fontSize*0.2)
-                        .overlay(
-                            RoundedRectangle(cornerRadius: 15)
-                                .stroke(Color.gray, lineWidth: 1.5))
                     }
+                    
                 }
             } // scroll end
             .navigationBarBackButtonHidden(true)

@@ -152,6 +152,7 @@ struct ContentView: View {
                         
                         
                         InputNameView(numUsers: $numUsers, nameArray: $nameArray)
+                            
                     }
                     
                     
@@ -223,17 +224,21 @@ struct InputNameView: View {
             if nameArray.count > 0 {
                 ForEach(0..<numUsers, id: \.self) { index in
                     HStack(spacing: 5){
-                        Spacer()
                         Image(systemName: "person.crop.square")
                             .font(.system(size: SettingConstants.fontSize*1.5))
-                        Spacer()
+                            .padding(.horizontal, SettingConstants.fontSize*0.7 )
                         
                         TextField("", text: $nameArray[index])
                             .font(.system(size: SettingConstants.fontSize*1.3))
                             .multilineTextAlignment(.leading)
                             .disableAutocorrection(true)
                     }
-                    .padding(.bottom, SettingConstants.fontSize*0.4)
+                    .padding(SettingConstants.fontSize*0.5)
+                    .overlay(
+                        RoundedRectangle(cornerRadius: 15)
+                            .stroke(Color.gray, lineWidth: 1.5))
+                    .padding(.horizontal, SettingConstants.fontSize*0.3)
+
                 }
             }
         }
@@ -242,16 +247,27 @@ struct InputNameView: View {
 
 
 struct ContentView_Previews: PreviewProvider {
+    static let deviceNumber = 3
+    
     static var previews: some View {
-        Group {
+        switch deviceNumber {
+        case 1:
             ContentView()
-                .previewDevice(PreviewDevice(rawValue: "iPhone 8"))
-                .previewDisplayName("8")
+                .previewDevice(PreviewDevice(rawValue: "iPhone 8 Plus"))
+                .previewDisplayName("8 Plus")
             
+        case 2:
             ContentView()
-                .previewDevice(PreviewDevice(rawValue: "iPad (9th generation)"))
-                .previewDisplayName("pad 9 gen")
+                .previewDevice(PreviewDevice(rawValue: "iPhone 11 Pro Max"))
+                .previewDisplayName("11 Pro Max")
             
+        case 3:
+            ContentView()
+                .previewDevice(PreviewDevice(rawValue: "iPad Pro (12.9-inch) (5th generation)"))
+                .previewDisplayName("12.9-inch")
+            
+        default:
+            ContentView()
         }
     }
 }

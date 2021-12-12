@@ -28,6 +28,7 @@ struct PlayingView: View {
             }
     }
     
+    
     struct BackWithAlertView: View {
         @Binding var isActivePlayingView: Bool
         @State var isShowingAlert: Bool = false
@@ -105,7 +106,7 @@ struct PlayingView: View {
             Spacer()
             
             
-            VStack {
+            HStack {
                 if sharedTimer.isPaused {
                     Image(systemName: "play.circle")
                         .foregroundColor(isDetectingLongPress ? Color.gray : Color.red)
@@ -137,6 +138,11 @@ struct PlayingView: View {
                     TableView(item: item)
                 }
             }
+            .overlay(
+                RoundedRectangle(cornerRadius: 15)
+                    .stroke(Color.gray, lineWidth: 1.5))
+            .padding(.horizontal, SettingConstants.fontSize*0.2)
+            
             
             
             Spacer()
