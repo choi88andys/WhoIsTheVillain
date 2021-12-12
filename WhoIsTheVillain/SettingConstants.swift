@@ -9,7 +9,7 @@ struct SettingConstants {
     static let timerInterval: Double = 0.2
     static let countdownSec: Double = 30
         
-    static let pressDuration: Double = 0.5
+    static let pressDuration: Double = 0.4
     static let pressDistance: CGFloat = 300
     
     static let safeMargin: CGFloat = 10

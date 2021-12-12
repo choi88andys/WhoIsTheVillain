@@ -214,6 +214,7 @@ struct ContentView: View {
     }
 }
 
+    
 
 struct InputNameView: View {
     @Binding var numUsers: Int
@@ -247,7 +248,7 @@ struct InputNameView: View {
 
 
 struct ContentView_Previews: PreviewProvider {
-    static let deviceNumber = 3
+    static let deviceNumber = 2
     
     static var previews: some View {
         switch deviceNumber {
@@ -257,6 +258,10 @@ struct ContentView_Previews: PreviewProvider {
                 .previewDisplayName("8 Plus")
             
         case 2:
+            ContentView()
+                .previewDevice(PreviewDevice(rawValue: "iPhone 8 Plus"))
+                .previewDisplayName("8 Plus")
+            
             ContentView()
                 .previewDevice(PreviewDevice(rawValue: "iPhone 11 Pro Max"))
                 .previewDisplayName("11 Pro Max")

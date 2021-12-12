@@ -129,8 +129,7 @@ struct PlayingView: View {
             }
             .font(.system(size: SettingConstants.fontSize*4.2))
             .padding(.bottom, SettingConstants.fontSize*0.2)
-            
-            
+                                    
             
                                                             
             VStack{
