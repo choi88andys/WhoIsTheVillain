@@ -187,7 +187,8 @@ struct ContentView: View {
                             .overlay(Text("START")
                                         .font(.system(size: SettingConstants.overlayTextSize, weight: Font.Weight.heavy, design: Font.Design.rounded))
                                         .foregroundColor(Color.black)
-                                        .multilineTextAlignment(.center))
+                                        .multilineTextAlignment(.center)
+                            )
                             .frame(width:startImageWidth, height: startImageHeight)
                     }
                     .isDetailLink(false)
@@ -214,7 +215,8 @@ struct ContentView: View {
     }
 }
 
-    
+
+
 
 struct InputNameView: View {
     @Binding var numUsers: Int
@@ -248,7 +250,7 @@ struct InputNameView: View {
 
 
 struct ContentView_Previews: PreviewProvider {
-    static let deviceNumber = 2
+    static let deviceNumber = 1
     
     static var previews: some View {
         switch deviceNumber {

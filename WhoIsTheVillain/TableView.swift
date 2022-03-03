@@ -3,6 +3,7 @@
 
 import SwiftUI
 
+
 struct TableView: View {
     var item: PersonalData
     var isTurtle: Bool = false
@@ -56,12 +57,8 @@ struct TableView: View {
 struct TimerView_Previews: PreviewProvider {
     static var previews: some View {
         TableView(item: PersonalData(personName: "AAAAABBBBBBCCCCCCCC", timeCount: 3355, timeoutCounter: 88))
-            .previewDevice(PreviewDevice(rawValue: "iPhone 8"))
-            .previewDisplayName("8")
-        
-        TableView(item: PersonalData(personName: "AAAAABBBBBBCCCCCCCC", timeCount: 3355, timeoutCounter: 88))
-            .previewDevice(PreviewDevice(rawValue: "iPad (9th generation)"))
-            .previewDisplayName("pad 9 gen")
+            .previewDevice(PreviewDevice(rawValue: "iPhone 8 Plus"))
+            .previewDisplayName("8 Plus")
     }
 }
 
