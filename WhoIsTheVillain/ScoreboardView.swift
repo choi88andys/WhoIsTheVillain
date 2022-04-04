@@ -68,7 +68,7 @@ struct ScoreboardView: View {
                             
                             DisclosureGroup {
                                 Divider()
-                                ForEach(0..<namesArray[i].count) { j in
+                                ForEach(0..<namesArray[i].count, id: \.self) { j in
                                     TableView(item: PersonalData(personName: namesArray[i][j],
                                                                  timeCount: timesArray[i][j],
                                                                  timeoutCounter: countersArray[i][j]),

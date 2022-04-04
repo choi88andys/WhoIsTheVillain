@@ -38,7 +38,7 @@ struct ContentView: View {
                                             timeMin = 0
                                             numUsers = 2
                                             for i in 0..<nameArray.count {
-                                                nameArray[i] = "Player\(i+1)"
+                                                nameArray[i] = "\(Strings.player) \(i+1)"
                                             }
                                         }
                                 }
@@ -65,20 +65,20 @@ struct ContentView: View {
                         VStack(spacing: SettingConstants.fontSize*0.4) {
                             HStack(spacing: 0) {
                                 Spacer()
-                                Text("Personal time limit :")
+                                Text(Strings.personalTimeLimit)
                                     .lineLimit(1)
                                     .padding(.trailing, SettingConstants.fontSize*0.6)
                                 
                                 Menu {
                                     Picker("", selection: $timeMin) {
                                         ForEach(0..<60) { i in
-                                            Text("\(i) min")
+                                            Text("\(i) \(Strings.minuteShort)")
                                         }
                                     }
                                     .labelsHidden()
                                     .pickerStyle(.inline)
                                 } label: {
-                                    Text("\(timeMin)min")
+                                    Text("\(timeMin)\(Strings.minuteShort)")
                                         .fixedSize()
                                         .padding(.trailing, SettingConstants.fontSize*0.3)
                                 }
@@ -86,13 +86,13 @@ struct ContentView: View {
                                 Menu {
                                     Picker("", selection: $timeSec) {
                                         ForEach(0..<60) { j in
-                                            Text("\(j) sec")
+                                            Text("\(j) \(Strings.secondShort)")
                                         }
                                     }
                                     .labelsHidden()
                                     .pickerStyle(.inline)
                                 } label: {
-                                    Text("\(timeSec)sec")
+                                    Text("\(timeSec)\(Strings.secondShort)")
                                         .fixedSize()
                                 }
                                 
@@ -105,7 +105,7 @@ struct ContentView: View {
                             HStack(spacing: 0) {
                                 Spacer()
                                 
-                                Text("Number of users :")
+                                Text(Strings.userCount)
                                     .lineLimit(1)
                                     .padding(.trailing, SettingConstants.fontSize*0.6)
                                 
@@ -113,13 +113,13 @@ struct ContentView: View {
                                     Picker("", selection: $numUsers) {
                                         ForEach(SettingConstants.minUsers..<SettingConstants.maxUsers+1,
                                                 id: \.self) { i in
-                                            Text("\(i) users")
+                                            Text("\(i) \(Strings.users)")
                                         }
                                     }
                                     .labelsHidden()
                                     .pickerStyle(InlinePickerStyle())
                                 } label: {
-                                    Text("\(numUsers) users")
+                                    Text("\(numUsers) \(Strings.users)")
                                         .fixedSize()
                                 }
                                 
@@ -132,10 +132,10 @@ struct ContentView: View {
                                 
                                 HStack {
                                     if isClockwise {
-                                        Text("Rotate clockwise")
+                                        Text(Strings.clockwise)
                                             .truncationMode(.head)
                                     } else {
-                                        Text("Rotate counter-clockwise")
+                                        Text(Strings.counterClockwise)
                                             .truncationMode(.head)
                                     }
                                 }
@@ -184,7 +184,7 @@ struct ContentView: View {
                     {
                         Ellipse()
                             .fill(Color.green)
-                            .overlay(Text("START")
+                            .overlay(Text(Strings.start)
                                         .font(.system(size: SettingConstants.overlayTextSize, weight: Font.Weight.heavy, design: Font.Design.rounded))
                                         .foregroundColor(Color.black)
                                         .multilineTextAlignment(.center)
@@ -197,7 +197,7 @@ struct ContentView: View {
                 .onAppear() {
                     if nameArray.count == 0 {
                         for i in 0..<SettingConstants.maxUsers {
-                            nameArray.append("Player\(i+1)")
+                            nameArray.append("\(Strings.player) \(i+1)")
                         }
                     }
                 } // end V

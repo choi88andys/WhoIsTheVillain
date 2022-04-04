@@ -21,37 +21,20 @@ struct AppLabel: View {
         }
     }
     
-    private var textSize: CGFloat {
-        if SettingConstants.isPhone {
-            return 45
-        } else {
-            return 80
-        }
-    }
-    
-    private var textPadding: CGFloat {
-        if SettingConstants.isPhone {
-            return 15
-        } else {
-            return 25
-        }
-    }
-    
-    
     
     var body: some View {
         return VStack {
-            RoundedRectangle(cornerRadius: 30)
+            RoundedRectangle(cornerRadius: SettingConstants.fontSize*1.5)
                 .fill(Color.gray)
-                .overlay(Text("Who is villain?")
-                            .font(.system(size: textSize, weight: Font.Weight.light, design: Font.Design.serif))
-                            .italic()
-                            .padding(.top, textPadding)
-                            .foregroundColor(.white)
-                            .multilineTextAlignment(.center))
+                .overlay(Text(Strings.appLabel)
+                    .font(.system(size: SettingConstants.fontSize*1.9, weight: Font.Weight.light, design: Font.Design.serif))
+                    // .italic()
+                    .padding(.top, SettingConstants.fontSize*0.8)
+                    .foregroundColor(.white)
+                    .multilineTextAlignment(.center))
                 .frame(maxWidth: labelWidth, maxHeight: labelHeight)
-                .padding(.top, 10)
-            .navigationBarTitleDisplayMode(NavigationBarItem.TitleDisplayMode.inline)
+                .padding(.top, SettingConstants.fontSize*0.5)
+                .navigationBarTitleDisplayMode(NavigationBarItem.TitleDisplayMode.inline)
             
             Divider()
         }

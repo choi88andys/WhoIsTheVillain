@@ -39,9 +39,9 @@ struct PlayingView: View {
                     isShowingAlert = true
                 }
                 .alert(isPresented: $isShowingAlert) {
-                    Alert(title: Text("Playing data will be discarded."),
+                    Alert(title: Text(Strings.alertTitle),
                           message: nil,
-                          primaryButton: .destructive(Text("Discard"), action: {
+                          primaryButton: .destructive(Text(Strings.discard), action: {
                         isActivePlayingView = false
                     }),
                           secondaryButton: .cancel())
@@ -167,7 +167,7 @@ struct PlayingView: View {
                         if sharedTimer.isClockwise {
                             EndTurnClockwise()
                                 .fill(Color.yellow)
-                                .overlay(Text("END TURN")
+                                .overlay(Text(Strings.endTurn)
                                             .font(.system(size: SettingConstants.overlayTextSize,
                                                           weight: Font.Weight.heavy, design: Font.Design.rounded))
                                             .foregroundColor(Color.black)
@@ -175,7 +175,7 @@ struct PlayingView: View {
                         } else {
                             EndTurn()
                                 .fill(Color.yellow)
-                                .overlay(Text("END TURN")
+                                .overlay(Text(Strings.endTurn)
                                             .font(.system(size: SettingConstants.overlayTextSize,
                                                           weight: Font.Weight.heavy, design: Font.Design.rounded))
                                             .foregroundColor(Color.black)

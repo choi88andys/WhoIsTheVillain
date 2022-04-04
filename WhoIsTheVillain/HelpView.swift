@@ -40,14 +40,12 @@ struct HelpView: View {
             ScrollView(showsIndicators: false) {
                 VStack(spacing: verticalSpacing) {
                     
-                    ItemView(description: "Reset all values.", imageView: Image(systemName: "doc"))
-                    ItemView(description: "Store current playing data.",
+                    ItemView(description: Strings.descriptionReset, imageView: Image(systemName: "doc"))
+                    ItemView(description: Strings.descriptionStore,
                              imageView: Image(systemName: "arrow.up.doc"))
-                    ItemView(description: "Show scoreboard to check the past records.",
+                    ItemView(description: Strings.descriptionScoreboard,
                              imageView: Image(systemName: "chart.bar.xaxis"))
-                    ItemView(description: "The timeout counter.\n" +
-                             "It will increase when you spend all your time or use the emergency button.\n" +
-                             "This is very important because you can catch the villain with it.",
+                    ItemView(description: Strings.descriptionTimeout,
                              imageView: Image(systemName: "clock.badge.exclamationmark"))
                     
                     
@@ -57,8 +55,7 @@ struct HelpView: View {
                             Image(systemName: "play.circle").foregroundColor(Color.red)
                         }
                         .frame(width: UIScreen.main.bounds.size.width*0.15)
-                        Text("Emergency button to pause the timer.\n" +
-                             "You have to press it for \(String(format: "%01.1f", SettingConstants.pressDuration)) second(s).")
+                        Text(Strings.descriptionEmergency)
                         Spacer()
                     }
                     
@@ -72,8 +69,7 @@ struct HelpView: View {
                                         .multilineTextAlignment(.center))
                             .frame(width: UIScreen.main.bounds.size.width*0.15,
                                    height: UIScreen.main.bounds.size.width*0.07)                            
-                        Text("End your turn to stop the timer and start next person's timer.\n" +
-                             "If your time is less than countdown time, it will set to \(String(format: "%02.0f", SettingConstants.countdownSec)) second(s)." )
+                        Text(Strings.descriptionEndTurn)
                         Spacer()
                     }
                     
