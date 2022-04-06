@@ -6,6 +6,8 @@
   
 */
 
+
+"noData" = "Theis is no playing data.";
 "descriptionReset" = "Reset all values.";
 "descriptionEmergency" = "Emergency button to pause the timer.\nYou have to press it for %01.1f second(s).";
 "descriptionStore" = "Store current playing data.";
@@ -29,3 +31,6 @@
 "userCount" = "Number of users :";
 "users" = "users";
 "player" = "Player";
+
+
+

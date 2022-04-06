@@ -26,12 +26,14 @@ struct Strings {
     static let player = "player".localized()
     
     
+    static let noData = "noData".localized()
     static let descriptionReset = "descriptionReset".localized()
     static let descriptionStore = "descriptionStore".localized()
     static let descriptionScoreboard = "descriptionScoreboard".localized()
     static let descriptionTimeout = "descriptionTimeout".localized()
     static let descriptionEndTurn = "descriptionEndTurn".localized(with: SettingConstants.countdownSec, comment: "")
     static let descriptionEmergency = "descriptionEmergency".localized(with: SettingConstants.pressDuration, comment: "")
+    
 
     
     

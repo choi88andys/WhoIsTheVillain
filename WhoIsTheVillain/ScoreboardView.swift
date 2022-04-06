@@ -56,7 +56,7 @@ struct ScoreboardView: View {
                         Image(systemName: "nosign")
                             .font(.system(size: SettingConstants.fontSize*4))
                             .padding(30)
-                        Text("Theis is no playing data.")
+                        Text(Strings.noData)
                             .font(.system(size: SettingConstants.fontSize))
                     }
                     

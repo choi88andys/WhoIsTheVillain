@@ -17,7 +17,7 @@ struct AppLabel: View {
         if SettingConstants.isPhone {
             return 50
         } else {
-            return 85
+            return 100
         }
     }
     
@@ -28,7 +28,6 @@ struct AppLabel: View {
                 .fill(Color.gray)
                 .overlay(Text(Strings.appLabel)
                     .font(.system(size: SettingConstants.fontSize*1.9, weight: Font.Weight.light, design: Font.Design.serif))
-                    // .italic()
                     .padding(.top, SettingConstants.fontSize*0.8)
                     .foregroundColor(.white)
                     .multilineTextAlignment(.center))
