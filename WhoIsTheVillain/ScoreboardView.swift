@@ -28,7 +28,7 @@ struct ScoreboardView: View {
     
     
     return VStack {
-      AppLabel()
+      BannerView()
         .toolbar {
           ToolbarItem(placement: .navigationBarLeading) {
             HStack {

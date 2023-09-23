@@ -24,7 +24,7 @@ struct HelpView: View {
   
   var body: some View {
     return VStack{
-      AppLabel()
+      BannerView()
         .toolbar {
           ToolbarItem(placement: .navigationBarLeading) {
             HStack {
