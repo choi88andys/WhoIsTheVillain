@@ -19,7 +19,8 @@ struct SettingConstants {
   static let fontSize: CGFloat = (UIDevice.current.userInterfaceIdiom == .phone) ? 20 : 40
   static let overlayTextSize: CGFloat = (UIDevice.current.userInterfaceIdiom == .phone) ? 40 : 60
   
-  
-  
+  static let screenWidth: CGFloat = UIScreen.main.bounds.width
+  static let screenHeight: CGFloat = UIScreen.main.bounds.height
+  static let gadAdSizeBannerRatio: CGFloat = (50 / 320) + 0.01
   
 }
