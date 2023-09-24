@@ -8,6 +8,7 @@ class SharedTimer: ObservableObject{
   @Published var turn: Int = 0
   @Published var isPaused: Bool = true
   @Published var isClockwise: Bool = true
+  @Published var urgentCountdownToggle: Bool = false
   
   init(){
     timer = Timer.scheduledTimer(timeInterval: SettingConstants.timerInterval,
@@ -26,6 +27,9 @@ class SharedTimer: ObservableObject{
     if !isPaused && users[turn].timeCount > 0 {
       users[turn].timeCount -= SettingConstants.timerInterval
       
+      if users[turn].timeCount <= 5 {
+        urgentCountdownToggle.toggle()
+      }
       if users[turn].timeCount <= 0 {
         users[turn].timeoutCounter += 1
       }
