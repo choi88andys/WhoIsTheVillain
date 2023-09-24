@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		6845972C2ABEC2BD002B4F51 /* GoogleMobileAds in Frameworks */ = {isa = PBXBuildFile; productRef = 6845972B2ABEC2BD002B4F51 /* GoogleMobileAds */; };
+		6845972E2ABEC558002B4F51 /* BannerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6845972D2ABEC558002B4F51 /* BannerView.swift */; };
 		A103F983275C876000300FA3 /* WhoIsTheVillainApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = A103F982275C876000300FA3 /* WhoIsTheVillainApp.swift */; };
 		A103F985275C876000300FA3 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A103F984275C876000300FA3 /* ContentView.swift */; };
 		A103F987275C876100300FA3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A103F986275C876100300FA3 /* Assets.xcassets */; };
@@ -29,6 +31,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		6845972D2ABEC558002B4F51 /* BannerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BannerView.swift; sourceTree = "<group>"; };
+		6845972F2ABEC67E002B4F51 /* Config.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Config.xcconfig; sourceTree = "<group>"; };
 		A103F97F275C876000300FA3 /* Who Is Villain.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Who Is Villain.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		A103F982275C876000300FA3 /* WhoIsTheVillainApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WhoIsTheVillainApp.swift; sourceTree = "<group>"; };
 		A103F984275C876000300FA3 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -58,6 +62,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6845972C2ABEC2BD002B4F51 /* GoogleMobileAds in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -87,6 +92,7 @@
 				A103F9A4275C8ADE00300FA3 /* Shapes */,
 				A103F9A3275C8ABD00300FA3 /* Extensions */,
 				A103F994275C8AA800300FA3 /* AppLabel.swift */,
+				6845972D2ABEC558002B4F51 /* BannerView.swift */,
 				A103F991275C8AA800300FA3 /* HelpView.swift */,
 				A103F997275C8AA800300FA3 /* PersonalData.swift */,
 				A103F998275C8AA800300FA3 /* PlayingView.swift */,
@@ -101,6 +107,7 @@
 				A103F986275C876100300FA3 /* Assets.xcassets */,
 				A103F988275C876100300FA3 /* Preview Content */,
 				A11A4C1927FAF35F0013158B /* Localizable.strings */,
+				6845972F2ABEC67E002B4F51 /* Config.xcconfig */,
 			);
 			path = WhoIsTheVillain;
 			sourceTree = "<group>";
@@ -155,6 +162,9 @@
 			dependencies = (
 			);
 			name = WhoIsTheVillain;
+			packageProductDependencies = (
+				6845972B2ABEC2BD002B4F51 /* GoogleMobileAds */,
+			);
 			productName = WhoIsTheVillain;
 			productReference = A103F97F275C876000300FA3 /* Who Is Villain.app */;
 			productType = "com.apple.product-type.application";
@@ -167,7 +177,7 @@
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
 				LastSwiftUpdateCheck = 1310;
-				LastUpgradeCheck = 1310;
+				LastUpgradeCheck = 1500;
 				TargetAttributes = {
 					A103F97E275C876000300FA3 = {
 						CreatedOnToolsVersion = 13.1;
@@ -184,6 +194,9 @@
 				ko,
 			);
 			mainGroup = A103F976275C876000300FA3;
+			packageReferences = (
+				6845972A2ABEC2BD002B4F51 /* XCRemoteSwiftPackageReference "swift-package-manager-google-mobile-ads" */,
+			);
 			productRefGroup = A103F980275C876000300FA3 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -217,6 +230,7 @@
 				A103F9A2275C8AA800300FA3 /* TableView.swift in Sources */,
 				A103F9AA275C8B1600300FA3 /* UIApplication+CloseKeyboard.swift in Sources */,
 				A103F99E275C8AA800300FA3 /* SettingConstants.swift in Sources */,
+				6845972E2ABEC558002B4F51 /* BannerView.swift in Sources */,
 				A103F9A8275C8AF200300FA3 /* EndTurn.swift in Sources */,
 				A103F99C275C8AA800300FA3 /* SharedTimer.swift in Sources */,
 				A103F9A0275C8AA800300FA3 /* PersonalData.swift in Sources */,
@@ -249,6 +263,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
 				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
@@ -283,6 +298,7 @@
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -311,6 +327,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
 				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
@@ -345,6 +362,7 @@
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
@@ -365,11 +383,12 @@
 		};
 		A103F98E275C876100300FA3 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 6845972F2ABEC67E002B4F51 /* Config.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1212.1;
+				CURRENT_PROJECT_VERSION = 924.1;
 				DEVELOPMENT_ASSET_PATHS = "\"WhoIsTheVillain/Preview Content\"";
 				DEVELOPMENT_TEAM = 7CF28467GM;
 				ENABLE_PREVIEWS = YES;
@@ -386,7 +405,8 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0.2;
+				MARKETING_VERSION = 1.1.0;
+				"OTHER_LDFLAGS[arch=*]" = "-ObjC";
 				PRODUCT_BUNDLE_IDENTIFIER = com.choi.andys.WhoIsTheVillain;
 				PRODUCT_NAME = "Who Is Villain";
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -397,11 +417,12 @@
 		};
 		A103F98F275C876100300FA3 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 6845972F2ABEC67E002B4F51 /* Config.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1212.1;
+				CURRENT_PROJECT_VERSION = 924.1;
 				DEVELOPMENT_ASSET_PATHS = "\"WhoIsTheVillain/Preview Content\"";
 				DEVELOPMENT_TEAM = 7CF28467GM;
 				ENABLE_PREVIEWS = YES;
@@ -418,7 +439,8 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0.2;
+				MARKETING_VERSION = 1.1.0;
+				"OTHER_LDFLAGS[arch=*]" = "-ObjC";
 				PRODUCT_BUNDLE_IDENTIFIER = com.choi.andys.WhoIsTheVillain;
 				PRODUCT_NAME = "Who Is Villain";
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -449,6 +471,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		6845972A2ABEC2BD002B4F51 /* XCRemoteSwiftPackageReference "swift-package-manager-google-mobile-ads" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/googleads/swift-package-manager-google-mobile-ads.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 10.10.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		6845972B2ABEC2BD002B4F51 /* GoogleMobileAds */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 6845972A2ABEC2BD002B4F51 /* XCRemoteSwiftPackageReference "swift-package-manager-google-mobile-ads" */;
+			productName = GoogleMobileAds;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = A103F977275C876000300FA3 /* Project object */;
 }

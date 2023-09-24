@@ -12,22 +12,6 @@ struct PlayingView: View {
   @Binding var isActivePlayingView: Bool
   @Environment(\.colorScheme) var colorScheme
   
-  @GestureState var isDetectingLongPress = false
-  var longPress: some Gesture {
-    LongPressGesture(minimumDuration: SettingConstants.pressDuration, maximumDistance: SettingConstants.pressDistance)
-      .updating($isDetectingLongPress) { currentState, gestureState,
-        transaction in
-        gestureState = currentState
-        transaction.animation = Animation.easeIn(duration: SettingConstants.pressDuration)
-      }
-      .onEnded { _ in
-        if !sharedTimer.isPaused {
-          sharedTimer.users[sharedTimer.turn].timeoutCounter += 1
-        }
-        sharedTimer.isPaused.toggle()
-      }
-  }
-  
   
   struct BackWithAlertView: View {
     @Binding var isActivePlayingView: Bool
@@ -51,7 +35,11 @@ struct PlayingView: View {
   
   var body: some View {
     return VStack {
-      AppLabel()
+      BannerView()
+        .onChange(of: sharedTimer.urgentCountdownToggle, perform: { _ in
+          let generator = UIImpactFeedbackGenerator(style: .light)
+          generator.impactOccurred()
+        })
         .toolbar {
           ToolbarItem(placement: .navigationBarLeading) {
             HStack {
