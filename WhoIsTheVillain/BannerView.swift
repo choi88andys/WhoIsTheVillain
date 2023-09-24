@@ -7,25 +7,63 @@
 
 import SwiftUI
 import GoogleMobileAds
+import Combine
 
 struct BannerView: View {
+  @State var isFailed = false
+  
   var body: some View {
-    BannerViewController()
-      .frame(
-        width: SettingConstants.isPhone ?
-        SettingConstants.screenWidth : GADAdSizeLeaderboard.size.width,
-        height: SettingConstants.isPhone ?
-        SettingConstants.screenWidth*SettingConstants.gadAdSizeBannerRatio : GADAdSizeLeaderboard.size.height
-      )
+    ZStack {
+      if isFailed {
+        Image(systemName: "icloud.slash")
+          .resizable()
+          .scaledToFit()
+      } else {
+        ProgressView()
+        BannerViewController(isFailed: $isFailed)
+      }
+    }
+    .frame(
+      width: SettingConstants.isPhone ?
+      SettingConstants.screenWidth : GADAdSizeLeaderboard.size.width,
+      height: SettingConstants.isPhone ?
+      SettingConstants.screenWidth*SettingConstants.gadAdSizeBannerRatio : GADAdSizeLeaderboard.size.height
+    )
   }
   
   private struct BannerViewController: UIViewControllerRepresentable {
+    @Binding var isFailed: Bool
+    
+    func makeCoordinator() -> Coordinator { Coordinator() }
+    class Coordinator { var cancelBag: Set<AnyCancellable> = [] }
+    
+    class UIBannerViewController: UIViewController, GADBannerViewDelegate {
+      @Published var adReceived: Bool = false
+      @Published var requestFailed: Bool = false
+      
+      func bannerViewDidReceiveAd(_ bannerView: GADBannerView) {
+        adReceived = true
+      }
+      
+      func bannerView(_ bannerView: GADBannerView, didFailToReceiveAdWithError error: Error) {
+        requestFailed = true
+      }
+    }
+    
     func makeUIViewController(context: Context) -> some UIViewController {
-      let bannerViewController = UIViewController(nibName: nil, bundle: nil)
+      let bannerViewController = UIBannerViewController(nibName: nil, bundle: nil)
       let bannerView = GADBannerView()
       let containerView = UIView()
       
       // Config
+      bannerViewController.$requestFailed
+        .sink { requestFailed in
+          DispatchQueue.main.async {
+            isFailed = requestFailed
+          }
+        }
+        .store(in: &context.coordinator.cancelBag)
+      
       if SettingConstants.isPhone {
         bannerView.adSize = GADPortraitAnchoredAdaptiveBannerAdSizeWithWidth(
           UIScreen.main.bounds.width
@@ -40,6 +78,7 @@ struct BannerView: View {
       bannerView.adUnitID = Bundle.main.infoDictionary?["TopBannerID"] as? String ?? ""
 #endif
       bannerView.rootViewController = bannerViewController
+      bannerView.delegate = bannerViewController
       containerView.backgroundColor = .clear
       
       // Set constraints
