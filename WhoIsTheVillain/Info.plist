@@ -14,7 +14,9 @@
 	<key>TopBannerID</key>
 	<string>$(TopBannerID)</string>
 	<key>TestBannerID</key>
-	<string>$(TestBannerID)</string>
+	<string>$(TestBanner)</string>
+	<key>TestAdaptiveBannerID</key>
+	<string>$(TestAdaptiveBanner)</string>
 	<key>SKAdNetworkItems</key>
 	<array>
 		<dict>
@@ -223,5 +225,7 @@
 		<key>NSAllowsArbitraryLoads</key>
 		<true/>
 	</dict>
+	<key>NSUserTrackingUsageDescription</key>
+	<string>Need Permission</string>
 </dict>
 </plist>

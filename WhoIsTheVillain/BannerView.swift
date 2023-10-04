@@ -8,31 +8,31 @@
 import SwiftUI
 import GoogleMobileAds
 import Combine
+import UserMessagingPlatform
 
+// TODO: - GDPR
 struct BannerView: View {
-  @State var isFailed = false
+  @State private var isFailed = false
+  @State private var width: CGFloat = 0
+  @State private var height: CGFloat = 0
   
   var body: some View {
     ZStack {
       if isFailed {
-        Image(systemName: "icloud.slash")
-          .resizable()
-          .scaledToFit()
+        AppLabel()
       } else {
         ProgressView()
-        BannerViewController(isFailed: $isFailed)
+        BannerViewController(isFailed: $isFailed, width: $width, height: $height)
+          .frame(width: width, height: height)
+          .padding(.bottom, SettingConstants.fontSize*0.4)
       }
     }
-    .frame(
-      width: SettingConstants.isPhone ?
-      SettingConstants.screenWidth : GADAdSizeLeaderboard.size.width,
-      height: SettingConstants.isPhone ?
-      SettingConstants.screenWidth*SettingConstants.gadAdSizeBannerRatio : GADAdSizeLeaderboard.size.height
-    )
   }
   
   private struct BannerViewController: UIViewControllerRepresentable {
     @Binding var isFailed: Bool
+    @Binding var width: CGFloat
+    @Binding var height: CGFloat
     
     func makeCoordinator() -> Coordinator { Coordinator() }
     class Coordinator { var cancelBag: Set<AnyCancellable> = [] }
@@ -64,16 +64,10 @@ struct BannerView: View {
         }
         .store(in: &context.coordinator.cancelBag)
       
-      if SettingConstants.isPhone {
-        bannerView.adSize = GADPortraitAnchoredAdaptiveBannerAdSizeWithWidth(
-          UIScreen.main.bounds.width
-        )
-      } else {
-        bannerView.adSize = GADAdSizeLeaderboard
-      }
+      bannerView.adSize = GADPortraitAnchoredAdaptiveBannerAdSizeWithWidth(UIScreen.main.bounds.width)
       bannerView.translatesAutoresizingMaskIntoConstraints = false
 #if DEBUG
-      bannerView.adUnitID = Bundle.main.infoDictionary?["TestBannerID"] as? String ?? ""
+      bannerView.adUnitID = Bundle.main.infoDictionary?["TestAdaptiveBannerID"] as? String ?? ""
 #else
       bannerView.adUnitID = Bundle.main.infoDictionary?["TopBannerID"] as? String ?? ""
 #endif
@@ -94,17 +88,39 @@ struct BannerView: View {
     }
     
     func updateUIViewController(_ uiViewController: UIViewControllerType, context: Context) {
-      uiViewController.view.frame = .init(
-        x: 0,
-        y: 0,
-        width: SettingConstants.isPhone ?
-        SettingConstants.screenWidth : GADAdSizeLeaderboard.size.width,
-        height: SettingConstants.isPhone ?
-        SettingConstants.screenWidth*SettingConstants.gadAdSizeBannerRatio : GADAdSizeLeaderboard.size.height
-      )
+      guard let bannerView = uiViewController.view.subviews.first as? GADBannerView else { return }
+      let parameters = UMPRequestParameters()
+      // Must set true if we don't know.
+      let underAge = UserDefaults.standard.object(forKey: "overSeventeenYearsOld") as? Bool ?? true
+      parameters.tagForUnderAgeOfConsent = underAge
       
-      if let bannerView = uiViewController.view.subviews.first as? GADBannerView {
-        bannerView.load(GADRequest())
+      UMPConsentInformation.sharedInstance.requestConsentInfoUpdate(with: parameters) {
+        if let consentError = $0 {
+          print("Error: \(consentError.localizedDescription)")
+          return
+        }
+        
+        UMPConsentForm.loadAndPresentIfRequired(from: uiViewController) {
+          if let consentError = $0 {
+            print("Error: \(consentError.localizedDescription)")
+            return
+          }
+
+          DispatchQueue.main.async {
+            GADMobileAds.sharedInstance().start()
+            
+            width = bannerView.frame.width
+            height = bannerView.frame.height
+            uiViewController.view.frame = .init(
+              x: 0,
+              y: 0,
+              width: bannerView.frame.width,
+              height: bannerView.frame.height
+            )
+            
+            bannerView.load(GADRequest())
+          }
+        }
       }
     }
   }

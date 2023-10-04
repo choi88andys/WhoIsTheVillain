@@ -32,5 +32,7 @@
 "users" = "users";
 "player" = "Player";
 
-
+"areYouOverSeventeen" = "Are you 17 years old or older?\n(Choice does not affect content usage.)";
+"yes" = "Yes";
+"no" = "No";
 

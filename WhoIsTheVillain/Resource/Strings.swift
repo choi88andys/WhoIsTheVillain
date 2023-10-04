@@ -34,7 +34,9 @@ struct Strings {
   static let descriptionEndTurn = "descriptionEndTurn".localized(with: SettingConstants.countdownSec, comment: "")
   static let descriptionEmergency = "descriptionEmergency".localized(with: SettingConstants.pressDuration, comment: "")
   
-  
+  static let areYouOverSeventeen = "areYouOverSeventeen".localized()
+  static let yes = "yes".localized()
+  static let no = "no".localized()
   
   
   
