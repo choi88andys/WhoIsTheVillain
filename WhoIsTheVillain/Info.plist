@@ -226,6 +226,6 @@
 		<true/>
 	</dict>
 	<key>NSUserTrackingUsageDescription</key>
-	<string>Need Permission</string>
+	<string></string>
 </dict>
 </plist>
