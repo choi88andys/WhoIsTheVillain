@@ -50,8 +50,7 @@ struct ContentView: View {
           .multilineTextAlignment(.center)
           .padding(.bottom, SettingConstants.fontSize*2)
         
-        HStack(spacing: 0) {
-          Spacer()
+        HStack(spacing: SettingConstants.fontSize*2) {
           Button {
             UserDefaults.standard.setValue(true, forKey: "overSeventeenYearsOld")
             knowUserAge = true
@@ -59,7 +58,6 @@ struct ContentView: View {
             Text(Strings.yes)
           }
           .buttonStyle(.borderedProminent)
-          Spacer()
           Button {
             UserDefaults.standard.setValue(false, forKey: "overSeventeenYearsOld")
             knowUserAge = true
@@ -67,9 +65,9 @@ struct ContentView: View {
             Text(Strings.no)
           }
           .buttonStyle(.bordered)
-          Spacer()
         }
       }
+      .font(.system(size: SettingConstants.fontSize*0.9))
       .padding(.vertical, SettingConstants.fontSize*1.6)
       .padding(.horizontal, SettingConstants.fontSize*1.5)
       .background(
