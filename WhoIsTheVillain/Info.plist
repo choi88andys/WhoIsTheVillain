@@ -226,6 +226,6 @@
 		<true/>
 	</dict>
 	<key>NSUserTrackingUsageDescription</key>
-	<string></string>
+	<string>(Allow custom ads)</string>
 </dict>
 </plist>
