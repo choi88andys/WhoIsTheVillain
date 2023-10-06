@@ -2,8 +2,8 @@
 
 import SwiftUI
 
-private let horizontalSpacing: CGFloat = SettingConstants.isPhone ? 10 : 20
-private let verticalSpacing: CGFloat = SettingConstants.isPhone ? 20 : 40
+private let horizontalSpacing: CGFloat = Values.isPhone ? 10 : 20
+private let verticalSpacing: CGFloat = Values.isPhone ? 20 : 40
 
 
 struct ItemView: View {
@@ -35,7 +35,7 @@ struct HelpView: View {
             }
           }
         }
-        .font(.system(size: SettingConstants.fontSize))
+        .font(.system(size: Values.fontSize))
       
       ScrollView(showsIndicators: false) {
         VStack(spacing: verticalSpacing) {
@@ -64,7 +64,7 @@ struct HelpView: View {
             EndTurn()
               .fill(Color.yellow)
               .overlay(Text("END")
-                .font(.system(size: SettingConstants.overlayTextSize*0.25, weight: Font.Weight.heavy, design: Font.Design.rounded))
+                .font(.system(size: Values.overlayTextSize*0.25, weight: Font.Weight.heavy, design: Font.Design.rounded))
                 .foregroundColor(Color.black)
                 .multilineTextAlignment(.center))
               .frame(width: UIScreen.main.bounds.size.width*0.15,
@@ -75,7 +75,7 @@ struct HelpView: View {
           
         }
       } // end scroll
-      .font(.system(size: SettingConstants.fontSize))
+      .font(.system(size: Values.fontSize))
       .padding(.bottom, 20)
     }
     .navigationBarBackButtonHidden(true)

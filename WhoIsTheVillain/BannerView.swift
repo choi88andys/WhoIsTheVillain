@@ -26,7 +26,7 @@ struct BannerView: View {
         ProgressView()
         BannerViewController(viewController: viewController, bannerViewDelegate: delegate)
           .frame(width: width, height: height)
-          .padding(.bottom, SettingConstants.fontSize*0.4)
+          .padding(.bottom, Values.fontSize*0.4)
           .background { formViewController.frame(width: .zero, height: .zero) }
           .task { await bannerViewControllerTask() }
       }

@@ -3,8 +3,8 @@ import SwiftUI
 
 
 struct PlayingView: View {
-  private let endTurnWidth: CGFloat = SettingConstants.isPhone ? 280 : 420
-  private let endTurnHeight: CGFloat = SettingConstants.isPhone ? 80 : 120
+  private let endTurnWidth: CGFloat = Values.isPhone ? 280 : 420
+  private let endTurnHeight: CGFloat = Values.isPhone ? 80 : 120
   
   
   @EnvironmentObject var sharedTimer: SharedTimer
@@ -87,7 +87,7 @@ struct PlayingView: View {
             }
           }
         }
-        .font(.system(size: SettingConstants.fontSize))
+        .font(.system(size: Values.fontSize))
       Spacer()
       
       HStack {
@@ -118,8 +118,8 @@ struct PlayingView: View {
           }
         }
       }
-      .font(.system(size: SettingConstants.fontSize*4.2))
-      .padding(.bottom, SettingConstants.fontSize*0.2)
+      .font(.system(size: Values.fontSize*4.2))
+      .padding(.bottom, Values.fontSize*0.2)
       
       VStack{
         ForEach(sharedTimer.users){item in
@@ -129,7 +129,7 @@ struct PlayingView: View {
       .overlay(
         RoundedRectangle(cornerRadius: 15)
           .stroke(Color.gray, lineWidth: 1.5))
-      .padding(.horizontal, SettingConstants.fontSize*0.2)
+      .padding(.horizontal, Values.fontSize*0.2)
       
       
       
@@ -141,8 +141,8 @@ struct PlayingView: View {
             sharedTimer.users[sharedTimer.turn].isTurnOn = false
             
             // reset countdown
-            if sharedTimer.users[sharedTimer.turn].timeCount < SettingConstants.countdownSec {
-              sharedTimer.users[sharedTimer.turn].timeCount = SettingConstants.countdownSec
+            if sharedTimer.users[sharedTimer.turn].timeCount < Values.countdownSec {
+              sharedTimer.users[sharedTimer.turn].timeCount = Values.countdownSec
             }
             
             // next turn
@@ -157,7 +157,7 @@ struct PlayingView: View {
               EndTurnClockwise()
                 .fill(Color.yellow)
                 .overlay(Text(Strings.endTurn)
-                  .font(.system(size: SettingConstants.overlayTextSize,
+                  .font(.system(size: Values.overlayTextSize,
                                 weight: Font.Weight.heavy, design: Font.Design.rounded))
                     .foregroundColor(Color.black)
                     .multilineTextAlignment(.center))
@@ -165,7 +165,7 @@ struct PlayingView: View {
               EndTurn()
                 .fill(Color.yellow)
                 .overlay(Text(Strings.endTurn)
-                  .font(.system(size: SettingConstants.overlayTextSize,
+                  .font(.system(size: Values.overlayTextSize,
                                 weight: Font.Weight.heavy, design: Font.Design.rounded))
                     .foregroundColor(Color.black)
                     .multilineTextAlignment(.center))
