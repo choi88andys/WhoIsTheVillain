@@ -14,12 +14,12 @@ struct TableView: View {
       HStack {
         if isTurtle {
           Image(systemName: "tortoise.fill")
-            .font(.system(size: SettingConstants.fontSize*0.8))
+            .font(.system(size: Values.fontSize*0.8))
         }
         else {
           if item.isTurnOn {
             Image(systemName: "hand.point.right")
-              .font(.system(size: SettingConstants.fontSize))
+              .font(.system(size: Values.fontSize))
           }
         }
       }
@@ -28,13 +28,13 @@ struct TableView: View {
       Text(item.personName)
         .truncationMode(.middle)
         .lineLimit(1)
-        .font(.custom("courier", size: SettingConstants.fontSize))
+        .font(.custom("courier", size: Values.fontSize))
         .frame(width: UIScreen.main.bounds.size.width*0.3)
       
       Spacer()
       Text(item.showRemainedTime)
         .fixedSize()
-        .font(.custom("copperplate", size: SettingConstants.fontSize*1.9))
+        .font(.custom("copperplate", size: Values.fontSize*1.9))
         .frame(minWidth: UIScreen.main.bounds.size.width*0.3)
       Spacer()
       
@@ -42,11 +42,11 @@ struct TableView: View {
         if item.timeoutCounter > 0 {
           Image(systemName: "clock.badge.exclamationmark")
           Image(systemName: "multiply")
-            .font(.system(size: SettingConstants.fontSize*0.5))
+            .font(.system(size: Values.fontSize*0.5))
           Text("\(item.timeoutCounter)")
         }
       }
-      .font(.system(size: SettingConstants.fontSize))
+      .font(.system(size: Values.fontSize))
       .frame(minWidth: UIScreen.main.bounds.size.width*0.15)
     }
   }

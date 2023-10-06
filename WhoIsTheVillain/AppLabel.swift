@@ -6,7 +6,7 @@ import SwiftUI
 struct AppLabel: View {
   
   private var labelWidth: CGFloat {
-    if SettingConstants.isPhone {
+    if Values.isPhone {
       return UIScreen.main.bounds.width * 0.9
     } else {
       return UIScreen.main.bounds.width * 0.8
@@ -14,7 +14,7 @@ struct AppLabel: View {
   }
   
   private var labelHeight: CGFloat {
-    if SettingConstants.isPhone {
+    if Values.isPhone {
       return 50
     } else {
       return 100
@@ -24,20 +24,20 @@ struct AppLabel: View {
   
   var body: some View {
     return VStack {
-      RoundedRectangle(cornerRadius: SettingConstants.fontSize*1.5)
+      RoundedRectangle(cornerRadius: Values.fontSize*1.5)
         .fill(Color.gray)
         .overlay(Text(Strings.appLabel)
-          .font(.system(size: SettingConstants.fontSize*1.9, weight: Font.Weight.light, design: Font.Design.serif))
-          .padding(.top, SettingConstants.fontSize*0.8)
+          .font(.system(size: Values.fontSize*1.9, weight: Font.Weight.light, design: Font.Design.serif))
+          .padding(.top, Values.fontSize*0.8)
           .foregroundColor(.white)
           .multilineTextAlignment(.center))
         .frame(maxWidth: labelWidth, maxHeight: labelHeight)
-        .padding(.top, SettingConstants.fontSize*0.5)
+        .padding(.top, Values.fontSize*0.5)
         .navigationBarTitleDisplayMode(NavigationBarItem.TitleDisplayMode.inline)
       
       Divider()
     }
-    .padding(.bottom, SettingConstants.fontSize*0.5)
+    .padding(.bottom, Values.fontSize*0.5)
   }
 }
 

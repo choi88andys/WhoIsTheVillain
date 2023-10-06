@@ -19,7 +19,7 @@
 		A103F99B275C8AA800300FA3 /* ScoreboardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A103F992275C8AA800300FA3 /* ScoreboardView.swift */; };
 		A103F99C275C8AA800300FA3 /* SharedTimer.swift in Sources */ = {isa = PBXBuildFile; fileRef = A103F993275C8AA800300FA3 /* SharedTimer.swift */; };
 		A103F99D275C8AA800300FA3 /* AppLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A103F994275C8AA800300FA3 /* AppLabel.swift */; };
-		A103F99E275C8AA800300FA3 /* SettingConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = A103F995275C8AA800300FA3 /* SettingConstants.swift */; };
+		A103F99E275C8AA800300FA3 /* Values.swift in Sources */ = {isa = PBXBuildFile; fileRef = A103F995275C8AA800300FA3 /* Values.swift */; };
 		A103F99F275C8AA800300FA3 /* SplashView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A103F996275C8AA800300FA3 /* SplashView.storyboard */; };
 		A103F9A0275C8AA800300FA3 /* PersonalData.swift in Sources */ = {isa = PBXBuildFile; fileRef = A103F997275C8AA800300FA3 /* PersonalData.swift */; };
 		A103F9A1275C8AA800300FA3 /* PlayingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A103F998275C8AA800300FA3 /* PlayingView.swift */; };
@@ -46,7 +46,7 @@
 		A103F992275C8AA800300FA3 /* ScoreboardView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScoreboardView.swift; sourceTree = "<group>"; };
 		A103F993275C8AA800300FA3 /* SharedTimer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SharedTimer.swift; sourceTree = "<group>"; };
 		A103F994275C8AA800300FA3 /* AppLabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppLabel.swift; sourceTree = "<group>"; };
-		A103F995275C8AA800300FA3 /* SettingConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingConstants.swift; sourceTree = "<group>"; };
+		A103F995275C8AA800300FA3 /* Values.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Values.swift; sourceTree = "<group>"; };
 		A103F996275C8AA800300FA3 /* SplashView.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = SplashView.storyboard; sourceTree = "<group>"; };
 		A103F997275C8AA800300FA3 /* PersonalData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PersonalData.swift; sourceTree = "<group>"; };
 		A103F998275C8AA800300FA3 /* PlayingView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlayingView.swift; sourceTree = "<group>"; };
@@ -98,7 +98,7 @@
 				A103F997275C8AA800300FA3 /* PersonalData.swift */,
 				A103F998275C8AA800300FA3 /* PlayingView.swift */,
 				A103F992275C8AA800300FA3 /* ScoreboardView.swift */,
-				A103F995275C8AA800300FA3 /* SettingConstants.swift */,
+				A103F995275C8AA800300FA3 /* Values.swift */,
 				A103F993275C8AA800300FA3 /* SharedTimer.swift */,
 				A103F999275C8AA800300FA3 /* TableView.swift */,
 				A103F996275C8AA800300FA3 /* SplashView.storyboard */,
@@ -232,7 +232,7 @@
 				A103F9A7275C8AF200300FA3 /* EndTurnClockwise.swift in Sources */,
 				A103F9A2275C8AA800300FA3 /* TableView.swift in Sources */,
 				A103F9AA275C8B1600300FA3 /* UIApplication+CloseKeyboard.swift in Sources */,
-				A103F99E275C8AA800300FA3 /* SettingConstants.swift in Sources */,
+				A103F99E275C8AA800300FA3 /* Values.swift in Sources */,
 				6845972E2ABEC558002B4F51 /* BannerView.swift in Sources */,
 				A103F9A8275C8AF200300FA3 /* EndTurn.swift in Sources */,
 				A103F99C275C8AA800300FA3 /* SharedTimer.swift in Sources */,
