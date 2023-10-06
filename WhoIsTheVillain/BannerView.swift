@@ -47,21 +47,19 @@ struct BannerView: View {
     UserDefaults.standard.object(forKey: "overSeventeenYearsOld") as? Bool ?? true
     do {
       try await UMPConsentInformation.sharedInstance.requestConsentInfoUpdate(with: parameters)
-      try await UMPConsentForm.loadAndPresentIfRequired(
-        from: formViewController.viewController
-      )
+      try await UMPConsentForm.loadAndPresentIfRequired(from: formViewController.viewController)
       if UMPConsentInformation.sharedInstance.canRequestAds {
-        loadAds()
+        await loadAds()
       }
     } catch {
       if UMPConsentInformation.sharedInstance.canRequestAds {
-        loadAds()
+        await loadAds()
       }
     }
   }
   
-  private func loadAds() {
-    GADMobileAds.sharedInstance().start()
+  private func loadAds() async {
+    await GADMobileAds.sharedInstance().start()
     if let bannerView = viewController.view.subviews.first as? GADBannerView {
       bannerView.load(GADRequest())
     }
