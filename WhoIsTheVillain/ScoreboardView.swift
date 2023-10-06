@@ -47,17 +47,17 @@ struct ScoreboardView: View {
             }
           }
         }
-        .font(.system(size: SettingConstants.fontSize))
+        .font(.system(size: Values.fontSize))
       
       
       ScrollView(showsIndicators: false) {
         if dateArray.count == 0 {
           VStack {
             Image(systemName: "nosign")
-              .font(.system(size: SettingConstants.fontSize*4))
+              .font(.system(size: Values.fontSize*4))
               .padding(30)
             Text(Strings.noData)
-              .font(.system(size: SettingConstants.fontSize))
+              .font(.system(size: Values.fontSize))
           }
           
           
@@ -83,10 +83,10 @@ struct ScoreboardView: View {
                     .foregroundColor(colorScheme == .dark ? Color.white : Color.black)
                   Spacer()
                 }
-                .font(.system(size: SettingConstants.fontSize))
+                .font(.system(size: Values.fontSize))
               }
-              .frame(width: UIScreen.main.bounds.size.width - SettingConstants.fontSize*0.5)
-              .padding(.trailing, SettingConstants.fontSize*0.2)
+              .frame(width: UIScreen.main.bounds.size.width - Values.fontSize*0.5)
+              .padding(.trailing, Values.fontSize*0.2)
               .overlay(
                 RoundedRectangle(cornerRadius: 15)
                   .stroke(Color.gray, lineWidth: 1.5))

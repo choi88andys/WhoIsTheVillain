@@ -11,12 +11,12 @@ class SharedTimer: ObservableObject{
   @Published var urgentCountdownToggle: Bool = false
   
   init(){
-    timer = Timer.scheduledTimer(timeInterval: SettingConstants.timerInterval,
+    timer = Timer.scheduledTimer(timeInterval: Values.timerInterval,
                                  target: self,
                                  selector: #selector(timeDidFire),
                                  userInfo: nil,
                                  repeats: true)
-    timer?.tolerance = SettingConstants.timerInterval * 0.1
+    timer?.tolerance = Values.timerInterval * 0.1
   }
   convenience init(users: [PersonalData]){
     self.init()
@@ -25,7 +25,7 @@ class SharedTimer: ObservableObject{
   
   @objc func timeDidFire(){
     if !isPaused && users[turn].timeCount > 0 {
-      users[turn].timeCount -= SettingConstants.timerInterval
+      users[turn].timeCount -= Values.timerInterval
       
       if users[turn].timeCount <= 5 {
         urgentCountdownToggle.toggle()

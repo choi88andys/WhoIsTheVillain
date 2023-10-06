@@ -7,105 +7,120 @@
 
 import SwiftUI
 import GoogleMobileAds
-import Combine
+import UserMessagingPlatform
 
+// TODO: - GDPR
 struct BannerView: View {
-  @State var isFailed = false
+  @StateObject private var delegate: BannerViewDelegate = .init()
+  @State private var width: CGFloat = 0
+  @State private var height: CGFloat = 0
+  @State private var hasViewAppeared = false
+  private let formViewController = FormViewController()
+  private let viewController = UIViewController(nibName: nil, bundle: nil)
   
   var body: some View {
     ZStack {
-      if isFailed {
-        Image(systemName: "icloud.slash")
-          .resizable()
-          .scaledToFit()
+      if delegate.isFailed {
+        AppLabel()
       } else {
         ProgressView()
-        BannerViewController(isFailed: $isFailed)
+        BannerViewController(viewController: viewController, bannerViewDelegate: delegate)
+          .frame(width: width, height: height)
+          .padding(.bottom, Values.fontSize*0.4)
+          .background { formViewController.frame(width: .zero, height: .zero) }
+          .task { await bannerViewControllerTask() }
       }
     }
-    .frame(
-      width: SettingConstants.isPhone ?
-      SettingConstants.screenWidth : GADAdSizeLeaderboard.size.width,
-      height: SettingConstants.isPhone ?
-      SettingConstants.screenWidth*SettingConstants.gadAdSizeBannerRatio : GADAdSizeLeaderboard.size.height
-    )
   }
   
-  private struct BannerViewController: UIViewControllerRepresentable {
-    @Binding var isFailed: Bool
+  private func bannerViewControllerTask() async {
+    guard !hasViewAppeared else { return }
+    hasViewAppeared = true
     
-    func makeCoordinator() -> Coordinator { Coordinator() }
-    class Coordinator { var cancelBag: Set<AnyCancellable> = [] }
-    
-    class UIBannerViewController: UIViewController, GADBannerViewDelegate {
-      @Published var adReceived: Bool = false
-      @Published var requestFailed: Bool = false
-      
-      func bannerViewDidReceiveAd(_ bannerView: GADBannerView) {
-        adReceived = true
-      }
-      
-      func bannerView(_ bannerView: GADBannerView, didFailToReceiveAdWithError error: Error) {
-        requestFailed = true
-      }
+    if let frame = viewController.view.subviews.first?.frame {
+      width = frame.width
+      height = frame.height
     }
     
-    func makeUIViewController(context: Context) -> some UIViewController {
-      let bannerViewController = UIBannerViewController(nibName: nil, bundle: nil)
-      let bannerView = GADBannerView()
-      let containerView = UIView()
-      
-      // Config
-      bannerViewController.$requestFailed
-        .sink { requestFailed in
-          DispatchQueue.main.async {
-            isFailed = requestFailed
-          }
-        }
-        .store(in: &context.coordinator.cancelBag)
-      
-      if SettingConstants.isPhone {
-        bannerView.adSize = GADPortraitAnchoredAdaptiveBannerAdSizeWithWidth(
-          UIScreen.main.bounds.width
-        )
-      } else {
-        bannerView.adSize = GADAdSizeLeaderboard
+    let parameters = UMPRequestParameters()
+    parameters.tagForUnderAgeOfConsent =
+    UserDefaults.standard.object(forKey: "overSeventeenYearsOld") as? Bool ?? true
+    do {
+      try await UMPConsentInformation.sharedInstance.requestConsentInfoUpdate(with: parameters)
+      try await UMPConsentForm.loadAndPresentIfRequired(from: formViewController.viewController)
+      if UMPConsentInformation.sharedInstance.canRequestAds {
+        await loadAds()
       }
-      bannerView.translatesAutoresizingMaskIntoConstraints = false
-#if DEBUG
-      bannerView.adUnitID = Bundle.main.infoDictionary?["TestBannerID"] as? String ?? ""
-#else
-      bannerView.adUnitID = Bundle.main.infoDictionary?["TopBannerID"] as? String ?? ""
-#endif
-      bannerView.rootViewController = bannerViewController
-      bannerView.delegate = bannerViewController
-      containerView.backgroundColor = .clear
-      
-      // Set constraints
-      containerView.addSubview(bannerView)
-      bannerViewController.view = containerView
-      let constraints: [NSLayoutConstraint] = [
-        bannerView.centerXAnchor.constraint(equalTo: containerView.centerXAnchor),
-        bannerView.centerYAnchor.constraint(equalTo: containerView.centerYAnchor)
-      ]
-      NSLayoutConstraint.activate(constraints)
-      
-      return bannerViewController
-    }
-    
-    func updateUIViewController(_ uiViewController: UIViewControllerType, context: Context) {
-      uiViewController.view.frame = .init(
-        x: 0,
-        y: 0,
-        width: SettingConstants.isPhone ?
-        SettingConstants.screenWidth : GADAdSizeLeaderboard.size.width,
-        height: SettingConstants.isPhone ?
-        SettingConstants.screenWidth*SettingConstants.gadAdSizeBannerRatio : GADAdSizeLeaderboard.size.height
-      )
-      
-      if let bannerView = uiViewController.view.subviews.first as? GADBannerView {
-        bannerView.load(GADRequest())
+    } catch {
+      if UMPConsentInformation.sharedInstance.canRequestAds {
+        await loadAds()
       }
     }
   }
+  
+  private func loadAds() async {
+    await GADMobileAds.sharedInstance().start()
+    if let bannerView = viewController.view.subviews.first as? GADBannerView {
+      bannerView.load(GADRequest())
+    }
+  }
+}
+
+fileprivate struct BannerViewController: UIViewControllerRepresentable {
+  let viewController: UIViewController
+  let bannerViewDelegate: GADBannerViewDelegate?
+  
+  init(viewController: UIViewController, bannerViewDelegate: GADBannerViewDelegate?) {
+    self.viewController = viewController
+    self.bannerViewDelegate = bannerViewDelegate
+  }
+  
+  func makeUIViewController(context: Context) -> some UIViewController {
+    let bannerViewController = viewController
+    let containerView = UIView()
+    let bannerView = GADBannerView()
+    
+    bannerView.adSize = GADPortraitAnchoredAdaptiveBannerAdSizeWithWidth(UIScreen.main.bounds.width)
+    bannerView.translatesAutoresizingMaskIntoConstraints = false
+#if DEBUG
+    bannerView.adUnitID = Bundle.main.infoDictionary?["TestAdaptiveBannerID"] as? String ?? ""
+#else
+    bannerView.adUnitID = Bundle.main.infoDictionary?["TopBannerID"] as? String ?? ""
+#endif
+    bannerView.rootViewController = bannerViewController
+    // bannerView.delegate = context.coordinator.parent.bannerViewDelegate
+    bannerView.delegate = bannerViewDelegate
+    containerView.backgroundColor = .clear
+    
+    // Set constraints
+    containerView.addSubview(bannerView)
+    bannerViewController.view = containerView
+    let constraints: [NSLayoutConstraint] = [
+      bannerView.centerXAnchor.constraint(equalTo: containerView.centerXAnchor),
+      bannerView.centerYAnchor.constraint(equalTo: containerView.centerYAnchor)
+    ]
+    NSLayoutConstraint.activate(constraints)
+    
+    return bannerViewController
+  }
+  
+  func updateUIViewController(_ uiViewController: UIViewControllerType, context: Context) { }
+}
+
+fileprivate class BannerViewDelegate: NSObject, ObservableObject, GADBannerViewDelegate {
+  @Published var isFailed = false
+  
+  func bannerView(_ bannerView: GADBannerView, didFailToReceiveAdWithError error: Error) {
+    isFailed = true
+  }
+  
+  func bannerViewDidReceiveAd(_ bannerView: GADBannerView) {
+    isFailed = false
+  }
+}
+
+fileprivate struct FormViewController: UIViewControllerRepresentable {
+  let viewController = UIViewController()
+  func makeUIViewController(context: Context) -> some UIViewController { viewController }
+  func updateUIViewController(_ uiViewController: UIViewControllerType, context: Context) { }
 }

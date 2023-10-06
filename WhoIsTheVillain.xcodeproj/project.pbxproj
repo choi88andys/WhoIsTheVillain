@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		6845972C2ABEC2BD002B4F51 /* GoogleMobileAds in Frameworks */ = {isa = PBXBuildFile; productRef = 6845972B2ABEC2BD002B4F51 /* GoogleMobileAds */; };
 		6845972E2ABEC558002B4F51 /* BannerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6845972D2ABEC558002B4F51 /* BannerView.swift */; };
+		68A60A792ACCF2BA0013CA48 /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 68A60A782ACCF2BA0013CA48 /* Localizable.xcstrings */; };
+		68A60A7B2ACCF62D0013CA48 /* InfoPlist.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 68A60A7A2ACCF62D0013CA48 /* InfoPlist.xcstrings */; };
 		A103F983275C876000300FA3 /* WhoIsTheVillainApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = A103F982275C876000300FA3 /* WhoIsTheVillainApp.swift */; };
 		A103F985275C876000300FA3 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A103F984275C876000300FA3 /* ContentView.swift */; };
 		A103F987275C876100300FA3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A103F986275C876100300FA3 /* Assets.xcassets */; };
@@ -17,7 +19,7 @@
 		A103F99B275C8AA800300FA3 /* ScoreboardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A103F992275C8AA800300FA3 /* ScoreboardView.swift */; };
 		A103F99C275C8AA800300FA3 /* SharedTimer.swift in Sources */ = {isa = PBXBuildFile; fileRef = A103F993275C8AA800300FA3 /* SharedTimer.swift */; };
 		A103F99D275C8AA800300FA3 /* AppLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A103F994275C8AA800300FA3 /* AppLabel.swift */; };
-		A103F99E275C8AA800300FA3 /* SettingConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = A103F995275C8AA800300FA3 /* SettingConstants.swift */; };
+		A103F99E275C8AA800300FA3 /* Values.swift in Sources */ = {isa = PBXBuildFile; fileRef = A103F995275C8AA800300FA3 /* Values.swift */; };
 		A103F99F275C8AA800300FA3 /* SplashView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A103F996275C8AA800300FA3 /* SplashView.storyboard */; };
 		A103F9A0275C8AA800300FA3 /* PersonalData.swift in Sources */ = {isa = PBXBuildFile; fileRef = A103F997275C8AA800300FA3 /* PersonalData.swift */; };
 		A103F9A1275C8AA800300FA3 /* PlayingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A103F998275C8AA800300FA3 /* PlayingView.swift */; };
@@ -25,7 +27,6 @@
 		A103F9A7275C8AF200300FA3 /* EndTurnClockwise.swift in Sources */ = {isa = PBXBuildFile; fileRef = A103F9A5275C8AF200300FA3 /* EndTurnClockwise.swift */; };
 		A103F9A8275C8AF200300FA3 /* EndTurn.swift in Sources */ = {isa = PBXBuildFile; fileRef = A103F9A6275C8AF200300FA3 /* EndTurn.swift */; };
 		A103F9AA275C8B1600300FA3 /* UIApplication+CloseKeyboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = A103F9A9275C8B1600300FA3 /* UIApplication+CloseKeyboard.swift */; };
-		A11A4C1727FAF35F0013158B /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = A11A4C1927FAF35F0013158B /* Localizable.strings */; };
 		A11A4C1D27FAF6730013158B /* Strings.swift in Sources */ = {isa = PBXBuildFile; fileRef = A11A4C1C27FAF6730013158B /* Strings.swift */; };
 		A11A4C1F27FAFB000013158B /* String+localize.swift in Sources */ = {isa = PBXBuildFile; fileRef = A11A4C1E27FAFB000013158B /* String+localize.swift */; };
 /* End PBXBuildFile section */
@@ -33,6 +34,8 @@
 /* Begin PBXFileReference section */
 		6845972D2ABEC558002B4F51 /* BannerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BannerView.swift; sourceTree = "<group>"; };
 		6845972F2ABEC67E002B4F51 /* Config.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Config.xcconfig; sourceTree = "<group>"; };
+		68A60A782ACCF2BA0013CA48 /* Localizable.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = Localizable.xcstrings; sourceTree = "<group>"; };
+		68A60A7A2ACCF62D0013CA48 /* InfoPlist.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = InfoPlist.xcstrings; sourceTree = "<group>"; };
 		A103F97F275C876000300FA3 /* Who Is Villain.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Who Is Villain.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		A103F982275C876000300FA3 /* WhoIsTheVillainApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WhoIsTheVillainApp.swift; sourceTree = "<group>"; };
 		A103F984275C876000300FA3 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -43,7 +46,7 @@
 		A103F992275C8AA800300FA3 /* ScoreboardView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScoreboardView.swift; sourceTree = "<group>"; };
 		A103F993275C8AA800300FA3 /* SharedTimer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SharedTimer.swift; sourceTree = "<group>"; };
 		A103F994275C8AA800300FA3 /* AppLabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppLabel.swift; sourceTree = "<group>"; };
-		A103F995275C8AA800300FA3 /* SettingConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingConstants.swift; sourceTree = "<group>"; };
+		A103F995275C8AA800300FA3 /* Values.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Values.swift; sourceTree = "<group>"; };
 		A103F996275C8AA800300FA3 /* SplashView.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = SplashView.storyboard; sourceTree = "<group>"; };
 		A103F997275C8AA800300FA3 /* PersonalData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PersonalData.swift; sourceTree = "<group>"; };
 		A103F998275C8AA800300FA3 /* PlayingView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlayingView.swift; sourceTree = "<group>"; };
@@ -51,8 +54,6 @@
 		A103F9A5275C8AF200300FA3 /* EndTurnClockwise.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EndTurnClockwise.swift; sourceTree = "<group>"; };
 		A103F9A6275C8AF200300FA3 /* EndTurn.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EndTurn.swift; sourceTree = "<group>"; };
 		A103F9A9275C8B1600300FA3 /* UIApplication+CloseKeyboard.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIApplication+CloseKeyboard.swift"; sourceTree = "<group>"; };
-		A11A4C1827FAF35F0013158B /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
-		A11A4C1A27FAF3C30013158B /* ko */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ko; path = ko.lproj/Localizable.strings; sourceTree = "<group>"; };
 		A11A4C1C27FAF6730013158B /* Strings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Strings.swift; sourceTree = "<group>"; };
 		A11A4C1E27FAFB000013158B /* String+localize.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+localize.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -97,7 +98,7 @@
 				A103F997275C8AA800300FA3 /* PersonalData.swift */,
 				A103F998275C8AA800300FA3 /* PlayingView.swift */,
 				A103F992275C8AA800300FA3 /* ScoreboardView.swift */,
-				A103F995275C8AA800300FA3 /* SettingConstants.swift */,
+				A103F995275C8AA800300FA3 /* Values.swift */,
 				A103F993275C8AA800300FA3 /* SharedTimer.swift */,
 				A103F999275C8AA800300FA3 /* TableView.swift */,
 				A103F996275C8AA800300FA3 /* SplashView.storyboard */,
@@ -106,8 +107,9 @@
 				A103F984275C876000300FA3 /* ContentView.swift */,
 				A103F986275C876100300FA3 /* Assets.xcassets */,
 				A103F988275C876100300FA3 /* Preview Content */,
-				A11A4C1927FAF35F0013158B /* Localizable.strings */,
 				6845972F2ABEC67E002B4F51 /* Config.xcconfig */,
+				68A60A782ACCF2BA0013CA48 /* Localizable.xcstrings */,
+				68A60A7A2ACCF62D0013CA48 /* InfoPlist.xcstrings */,
 			);
 			path = WhoIsTheVillain;
 			sourceTree = "<group>";
@@ -211,8 +213,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				68A60A792ACCF2BA0013CA48 /* Localizable.xcstrings in Resources */,
+				68A60A7B2ACCF62D0013CA48 /* InfoPlist.xcstrings in Resources */,
 				A103F98A275C876100300FA3 /* Preview Assets.xcassets in Resources */,
-				A11A4C1727FAF35F0013158B /* Localizable.strings in Resources */,
 				A103F99F275C8AA800300FA3 /* SplashView.storyboard in Resources */,
 				A103F987275C876100300FA3 /* Assets.xcassets in Resources */,
 			);
@@ -229,7 +232,7 @@
 				A103F9A7275C8AF200300FA3 /* EndTurnClockwise.swift in Sources */,
 				A103F9A2275C8AA800300FA3 /* TableView.swift in Sources */,
 				A103F9AA275C8B1600300FA3 /* UIApplication+CloseKeyboard.swift in Sources */,
-				A103F99E275C8AA800300FA3 /* SettingConstants.swift in Sources */,
+				A103F99E275C8AA800300FA3 /* Values.swift in Sources */,
 				6845972E2ABEC558002B4F51 /* BannerView.swift in Sources */,
 				A103F9A8275C8AF200300FA3 /* EndTurn.swift in Sources */,
 				A103F99C275C8AA800300FA3 /* SharedTimer.swift in Sources */,
@@ -245,18 +248,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
-
-/* Begin PBXVariantGroup section */
-		A11A4C1927FAF35F0013158B /* Localizable.strings */ = {
-			isa = PBXVariantGroup;
-			children = (
-				A11A4C1827FAF35F0013158B /* en */,
-				A11A4C1A27FAF3C30013158B /* ko */,
-			);
-			name = Localizable.strings;
-			sourceTree = "<group>";
-		};
-/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		A103F98B275C876100300FA3 /* Debug */ = {
@@ -313,7 +304,8 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -371,7 +363,8 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
@@ -388,7 +381,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 924.1;
+				CURRENT_PROJECT_VERSION = 1006.1;
 				DEVELOPMENT_ASSET_PATHS = "\"WhoIsTheVillain/Preview Content\"";
 				DEVELOPMENT_TEAM = 7CF28467GM;
 				ENABLE_PREVIEWS = YES;
@@ -401,11 +394,12 @@
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = UIInterfaceOrientationPortrait;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.1.0;
+				MARKETING_VERSION = 1.1.1;
 				"OTHER_LDFLAGS[arch=*]" = "-ObjC";
 				PRODUCT_BUNDLE_IDENTIFIER = com.choi.andys.WhoIsTheVillain;
 				PRODUCT_NAME = "Who Is Villain";
@@ -422,7 +416,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 924.1;
+				CURRENT_PROJECT_VERSION = 1006.1;
 				DEVELOPMENT_ASSET_PATHS = "\"WhoIsTheVillain/Preview Content\"";
 				DEVELOPMENT_TEAM = 7CF28467GM;
 				ENABLE_PREVIEWS = YES;
@@ -435,11 +429,12 @@
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = UIInterfaceOrientationPortrait;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.1.0;
+				MARKETING_VERSION = 1.1.1;
 				"OTHER_LDFLAGS[arch=*]" = "-ObjC";
 				PRODUCT_BUNDLE_IDENTIFIER = com.choi.andys.WhoIsTheVillain;
 				PRODUCT_NAME = "Who Is Villain";

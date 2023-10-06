@@ -2,12 +2,12 @@
 
 import SwiftUI
 
-struct SettingConstants {
+struct Values {
   static let minUsers: Int = 2
   static let maxUsers: Int = 6
   
   static let timerInterval: Double = 0.2
-  static let countdownSec: Double = 30
+  static var countdownSec: Double = 30
   
   static let pressDuration: Double = 0.3
   static let pressDistance: CGFloat = 300
