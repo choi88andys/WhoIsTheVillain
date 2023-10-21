@@ -20,7 +20,7 @@ struct ItemView: View {
 }
 
 struct HelpView: View {
-  @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
+  let dismiss: () -> ()
   
   var body: some View {
     return VStack{
@@ -30,7 +30,7 @@ struct HelpView: View {
             HStack {
               Image(systemName: "arrowshape.turn.up.backward.fill")
                 .onTapGesture {
-                  presentationMode.wrappedValue.dismiss()
+                  dismiss()
                 }
             }
           }
@@ -79,20 +79,5 @@ struct HelpView: View {
       .padding(.bottom, 20)
     }
     .navigationBarBackButtonHidden(true)
-  }
-}
-
-struct HelpView_Previews: PreviewProvider {
-  static var previews: some View {
-    Group {
-      HelpView()
-        .previewDevice(PreviewDevice(rawValue: "iPhone 8"))
-        .previewDisplayName("8")
-      
-      HelpView()
-        .previewDevice(PreviewDevice(rawValue: "iPad (9th generation)"))
-        .previewDisplayName("pad 9 gen")
-      
-    }
   }
 }
