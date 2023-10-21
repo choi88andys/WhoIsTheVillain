@@ -12,6 +12,10 @@ struct ContentView: View {
   private let startImageHeight: CGFloat = Values.isPhone ? 70 : 105
   private let startImageWidth: CGFloat = Values.isPhone ? 220 : 330
   
+  let startButtonTapped: () -> ()
+  let helpButtonTapped: () -> ()
+  let scoreboardButtonTapped: (Bool) -> ()
+  
   @State var knowUserAge: Bool = UserDefaults.standard.object(forKey: "overSeventeenYearsOld") != nil
   @State var isClockwise: Bool = true
   @State var timeMin: Int = 0
@@ -19,27 +23,19 @@ struct ContentView: View {
   @State var countdownSeconds: Int = 30
   @State var numUsers: Int = 2
   @State var nameArray: [String] = []
-  @StateObject var sharedTimer: SharedTimer = SharedTimer()
+  @EnvironmentObject var sharedTimer: SharedTimer
   
   @State var isActivePlayingView: Bool = false
   @Environment(\.colorScheme) var colorScheme
   
   
   var body: some View {
-    return NavigationView {
-      ZStack {
-        contentView
-        if !knowUserAge { ageCheckingView }
-      } // end Z
-      .contentShape(Rectangle())
-      .onTapGesture {
-        hideKeyboard()
-      }
-      
-    } // end Navi
-    .navigationViewStyle(StackNavigationViewStyle())
-    .navigationBarHidden(true)
-    .environmentObject(sharedTimer)
+    ZStack {
+      contentView
+      if !knowUserAge { ageCheckingView }
+    }
+    .contentShape(Rectangle())
+    .onTapGesture { hideKeyboard() }
   }
   
   var ageCheckingView: some View {
@@ -107,11 +103,15 @@ struct ContentView: View {
           
           ToolbarItem(placement: .navigationBarTrailing) {
             HStack {
-              NavigationLink(destination: ScoreboardView(isActivePlayingView: $isActivePlayingView)) {
+              Button {
+                scoreboardButtonTapped(false)
+              } label: {
                 Image(systemName: "chart.bar.xaxis")
                   .foregroundColor(colorScheme == .dark ? Color.white : Color.black)
               }
-              NavigationLink(destination: HelpView()) {
+              Button {
+                helpButtonTapped()
+              } label: {
                 Image(systemName: "questionmark")
                   .foregroundColor(colorScheme == .dark ? Color.white : Color.black)
               }
@@ -228,41 +228,31 @@ struct ContentView: View {
       
       Spacer()
       Divider()
-      NavigationLink(destination: PlayingView(
-        isActivePlayingView: $isActivePlayingView).onAppear(){
-          Values.countdownSec = Double(countdownSeconds)
-          sharedTimer.reset()
-          
-          sharedTimer.isClockwise = isClockwise
-          let time = Double(timeMin*60 + timeSec) > Values.countdownSec ?
-          Double(timeMin*60 + timeSec) : Values.countdownSec
-          
-          for i in 0..<numUsers {
-            let name = nameArray[i]
-            sharedTimer.users.append(PersonalData(
-              timeCount: time,
-              personName: name)
-            )
-          }
-          
-          sharedTimer.users[0].isTurnOn = true
-          
-          UIApplication.shared.isIdleTimerDisabled = true
-        }.onDisappear() {
-          UIApplication.shared.isIdleTimerDisabled = false
-        }, isActive: $isActivePlayingView)
-      {
+      
+      Button {
+        sharedTimer.countdownSec = Double(countdownSeconds)
+        sharedTimer.reset()
+        sharedTimer.isClockwise = isClockwise
+        let time = max(Double(timeMin*60 + timeSec), sharedTimer.countdownSec)
+        for i in 0..<numUsers {
+          sharedTimer.users.append(
+            PersonalData(timeCount: time, personName: nameArray[i])
+          )
+        }
+        sharedTimer.users[0].isTurnOn = true
+        startButtonTapped()
+      } label: {
         Ellipse()
           .fill(Color.green)
-          .overlay(Text(Strings.start)
-            .font(.system(size: Values.overlayTextSize, weight: Font.Weight.heavy, design: Font.Design.rounded))
-            .foregroundColor(Color.black)
-            .multilineTextAlignment(.center)
+          .overlay(
+            Text(Strings.start)
+              .font(.system(size: Values.overlayTextSize, weight: .heavy, design: .rounded))
+              .foregroundColor(Color.black)
+              .multilineTextAlignment(.center)
           )
           .frame(width:startImageWidth, height: startImageHeight)
+          .padding()
       }
-      .isDetailLink(false)
-      .padding()
     }
     .onAppear() {
       if nameArray.count == 0 {

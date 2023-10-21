@@ -9,6 +9,7 @@ class SharedTimer: ObservableObject{
   @Published var isPaused: Bool = true
   @Published var isClockwise: Bool = true
   @Published var urgentCountdownToggle: Bool = false
+  var countdownSec: Double = 30
   
   init(){
     timer = Timer.scheduledTimer(timeInterval: Values.timerInterval,

@@ -4,8 +4,9 @@ import SwiftUI
 
 
 struct ScoreboardView: View {
-  @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
-  @Binding var isActivePlayingView: Bool
+  let dismiss: () -> ()
+  let homeButtonTapped: () -> ()
+  let isActivePlayingView: Bool
   
   let df = DateFormatter()
   let defaults = UserDefaults.standard
@@ -35,13 +36,13 @@ struct ScoreboardView: View {
               if isActivePlayingView {
                 Image(systemName: "house.fill")
                   .onTapGesture {
-                    isActivePlayingView = false
+                    homeButtonTapped()
                   }
               }
               else {
                 Image(systemName: "arrowshape.turn.up.backward.fill")
                   .onTapGesture {
-                    presentationMode.wrappedValue.dismiss()
+                    dismiss()
                   }
               }
             }

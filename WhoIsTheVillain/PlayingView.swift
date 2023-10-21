@@ -5,17 +5,16 @@ import SwiftUI
 struct PlayingView: View {
   private let endTurnWidth: CGFloat = Values.isPhone ? 280 : 420
   private let endTurnHeight: CGFloat = Values.isPhone ? 80 : 120
-  
+  let dismiss: () -> ()
+  let scoreBoardButtonTapped: (Bool) -> ()
   
   @EnvironmentObject var sharedTimer: SharedTimer
-  
-  @Binding var isActivePlayingView: Bool
   @Environment(\.colorScheme) var colorScheme
-  
+  @State private var shouldDismissed = false
   
   struct BackWithAlertView: View {
-    @Binding var isActivePlayingView: Bool
-    @State var isShowingAlert: Bool = false
+    @Binding var shouldDismissed: Bool
+    @State private var isShowingAlert: Bool = false
     
     var body: some View {
       Image(systemName: "arrowshape.turn.up.backward.fill")
@@ -23,12 +22,11 @@ struct PlayingView: View {
           isShowingAlert = true
         }
         .alert(isPresented: $isShowingAlert) {
-          Alert(title: Text(Strings.alertTitle),
-                message: nil,
-                primaryButton: .destructive(Text(Strings.discard), action: {
-            isActivePlayingView = false
-          }),
-                secondaryButton: .cancel())
+          Alert(
+            title: Text(Strings.alertTitle),
+            primaryButton: .destructive(Text(Strings.discard), action: { shouldDismissed = true }),
+            secondaryButton: .cancel()
+          )
         }
     }
   }
@@ -40,22 +38,19 @@ struct PlayingView: View {
           let generator = UIImpactFeedbackGenerator(style: .light)
           generator.impactOccurred()
         })
+        .onChange(of: shouldDismissed, perform: { shouldDismissed in
+          if shouldDismissed { dismiss() }
+        })
         .toolbar {
           ToolbarItem(placement: .navigationBarLeading) {
             HStack {
-              BackWithAlertView(isActivePlayingView: $isActivePlayingView)
+              BackWithAlertView(shouldDismissed: $shouldDismissed)
             }
           }
           
           ToolbarItem(placement: .navigationBarTrailing) {
             HStack {
-              NavigationLink(destination: ScoreboardView(isActivePlayingView: $isActivePlayingView))
-              {
-                Image(systemName: "arrow.up.doc")
-                  .foregroundColor(colorScheme == .dark ? Color.white : Color.black)
-              }
-              .isDetailLink(false)
-              .simultaneousGesture(TapGesture().onEnded {
+              Button {
                 var dateArray = UserDefaults.standard
                   .object(forKey:"dateArray") as? [Date] ?? [Date]()
                 dateArray.append(Date())
@@ -83,7 +78,12 @@ struct PlayingView: View {
                 UserDefaults.standard.set(namesArray, forKey: "namesArray")
                 UserDefaults.standard.set(timesArray, forKey: "timesArray")
                 UserDefaults.standard.set(countersArray, forKey: "countersArray")
-              })
+                
+                scoreBoardButtonTapped(true)
+              } label: {
+                Image(systemName: "arrow.up.doc")
+                  .foregroundColor(colorScheme == .dark ? Color.white : Color.black)
+              }
             }
           }
         }
@@ -141,8 +141,8 @@ struct PlayingView: View {
             sharedTimer.users[sharedTimer.turn].isTurnOn = false
             
             // reset countdown
-            if sharedTimer.users[sharedTimer.turn].timeCount < Values.countdownSec {
-              sharedTimer.users[sharedTimer.turn].timeCount = Values.countdownSec
+            if sharedTimer.users[sharedTimer.turn].timeCount < sharedTimer.countdownSec {
+              sharedTimer.users[sharedTimer.turn].timeCount = sharedTimer.countdownSec
             }
             
             // next turn
@@ -179,7 +179,8 @@ struct PlayingView: View {
       Spacer()
     } // end VStack
     .navigationBarBackButtonHidden(true)
-    
+    .onAppear { UIApplication.shared.isIdleTimerDisabled = true }
+    .onDisappear { UIApplication.shared.isIdleTimerDisabled = false }
   }
 }
 
