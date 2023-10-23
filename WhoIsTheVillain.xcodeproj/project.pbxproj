@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		68432B662AE3DDE7005A6147 /* NavigationRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68432B652AE3DDE7005A6147 /* NavigationRouter.swift */; };
+		68432B682AE3DE00005A6147 /* NavigationNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68432B672AE3DE00005A6147 /* NavigationNode.swift */; };
+		68432B6A2AE3DEB9005A6147 /* AppRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68432B692AE3DEB9005A6147 /* AppRouter.swift */; };
 		6845972C2ABEC2BD002B4F51 /* GoogleMobileAds in Frameworks */ = {isa = PBXBuildFile; productRef = 6845972B2ABEC2BD002B4F51 /* GoogleMobileAds */; };
 		6845972E2ABEC558002B4F51 /* BannerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6845972D2ABEC558002B4F51 /* BannerView.swift */; };
 		68A60A792ACCF2BA0013CA48 /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 68A60A782ACCF2BA0013CA48 /* Localizable.xcstrings */; };
@@ -32,6 +35,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		68432B652AE3DDE7005A6147 /* NavigationRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationRouter.swift; sourceTree = "<group>"; };
+		68432B672AE3DE00005A6147 /* NavigationNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationNode.swift; sourceTree = "<group>"; };
+		68432B692AE3DEB9005A6147 /* AppRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppRouter.swift; sourceTree = "<group>"; };
 		6845972D2ABEC558002B4F51 /* BannerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BannerView.swift; sourceTree = "<group>"; };
 		6845972F2ABEC67E002B4F51 /* Config.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Config.xcconfig; sourceTree = "<group>"; };
 		68A60A782ACCF2BA0013CA48 /* Localizable.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = Localizable.xcstrings; sourceTree = "<group>"; };
@@ -70,6 +76,16 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		68432B642AE3DDDD005A6147 /* CustomNavigationStack */ = {
+			isa = PBXGroup;
+			children = (
+				68432B672AE3DE00005A6147 /* NavigationNode.swift */,
+				68432B652AE3DDE7005A6147 /* NavigationRouter.swift */,
+				68432B692AE3DEB9005A6147 /* AppRouter.swift */,
+			);
+			path = CustomNavigationStack;
+			sourceTree = "<group>";
+		};
 		A103F976275C876000300FA3 = {
 			isa = PBXGroup;
 			children = (
@@ -89,6 +105,7 @@
 		A103F981275C876000300FA3 /* WhoIsTheVillain */ = {
 			isa = PBXGroup;
 			children = (
+				68432B642AE3DDDD005A6147 /* CustomNavigationStack */,
 				A11A4C1B27FAF6540013158B /* Resource */,
 				A103F9A4275C8ADE00300FA3 /* Shapes */,
 				A103F9A3275C8ABD00300FA3 /* Extensions */,
@@ -230,15 +247,18 @@
 			files = (
 				A103F985275C876000300FA3 /* ContentView.swift in Sources */,
 				A103F9A7275C8AF200300FA3 /* EndTurnClockwise.swift in Sources */,
+				68432B6A2AE3DEB9005A6147 /* AppRouter.swift in Sources */,
 				A103F9A2275C8AA800300FA3 /* TableView.swift in Sources */,
 				A103F9AA275C8B1600300FA3 /* UIApplication+CloseKeyboard.swift in Sources */,
 				A103F99E275C8AA800300FA3 /* Values.swift in Sources */,
 				6845972E2ABEC558002B4F51 /* BannerView.swift in Sources */,
 				A103F9A8275C8AF200300FA3 /* EndTurn.swift in Sources */,
+				68432B682AE3DE00005A6147 /* NavigationNode.swift in Sources */,
 				A103F99C275C8AA800300FA3 /* SharedTimer.swift in Sources */,
 				A103F9A0275C8AA800300FA3 /* PersonalData.swift in Sources */,
 				A103F99A275C8AA800300FA3 /* HelpView.swift in Sources */,
 				A11A4C1D27FAF6730013158B /* Strings.swift in Sources */,
+				68432B662AE3DDE7005A6147 /* NavigationRouter.swift in Sources */,
 				A11A4C1F27FAFB000013158B /* String+localize.swift in Sources */,
 				A103F99B275C8AA800300FA3 /* ScoreboardView.swift in Sources */,
 				A103F9A1275C8AA800300FA3 /* PlayingView.swift in Sources */,
@@ -381,7 +401,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1006.1;
+				CURRENT_PROJECT_VERSION = 1023.1;
 				DEVELOPMENT_ASSET_PATHS = "\"WhoIsTheVillain/Preview Content\"";
 				DEVELOPMENT_TEAM = 7CF28467GM;
 				ENABLE_PREVIEWS = YES;
@@ -399,8 +419,12 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.1.1;
-				"OTHER_LDFLAGS[arch=*]" = "-ObjC";
+				MARKETING_VERSION = 1.1.2;
+				"OTHER_LDFLAGS[arch=*]" = (
+					"-ObjC",
+					"-Xlinker",
+					"-no_warn_duplicate_libraries",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.choi.andys.WhoIsTheVillain;
 				PRODUCT_NAME = "Who Is Villain";
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -416,7 +440,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1006.1;
+				CURRENT_PROJECT_VERSION = 1023.1;
 				DEVELOPMENT_ASSET_PATHS = "\"WhoIsTheVillain/Preview Content\"";
 				DEVELOPMENT_TEAM = 7CF28467GM;
 				ENABLE_PREVIEWS = YES;
@@ -434,8 +458,12 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.1.1;
-				"OTHER_LDFLAGS[arch=*]" = "-ObjC";
+				MARKETING_VERSION = 1.1.2;
+				"OTHER_LDFLAGS[arch=*]" = (
+					"-ObjC",
+					"-Xlinker",
+					"-no_warn_duplicate_libraries",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.choi.andys.WhoIsTheVillain;
 				PRODUCT_NAME = "Who Is Villain";
 				SWIFT_EMIT_LOC_STRINGS = YES;
